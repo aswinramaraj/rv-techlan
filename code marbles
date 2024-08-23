@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Marbles</title>
+    <link rel="stylesheet" href="marbles.css">
+</head>
+<body>
+    <div class="header-container">
+        <img src="codeverse.jpg" alt="Squid Game" class="header-image">
+        <div class="header-content">
+            <h1>Code Marbles</h1>
+        </div>
+        <div class="header-right">
+            <div class="tab" onmouseover="showPopup(event)" onmouseout="hidePopup(event)">Instruction</div>
+            <div class="popup" id="popupBox" onmouseover="keepPopup(event)" onmouseout="hidePopup(event)">
+                <h2>How to Play</h2>
+                <dl>
+                    <dt>Start the Game:</dt>
+                    <dd>You start with a set number of marbles to bet with.</dd>
+                    <dt>Receive a Question:</dt>
+                    <dd>A coding question will be presented along with two answer choices.</dd>
+                    <dt>Place Your Bet:</dt>
+                    <dd>Bet on the answer you believe is correct. Win or lose marbles based on your answer.</dd>
+                    <dt>Accumulate Marbles:</dt>
+                    <dd>Continue betting to accumulate more marbles.</dd>
+                </dl>
+            </div>
+            <div class="total_marbles">Total Marbles:</div>
+            <div class="total_marbles_remaining" id="total_marbles_remaining">10</div>
+            <div class="total_credits">Total Credits:</div>
+            <div class="total_credits_remaining" id="total_credits_remaining">0</div>
+            <img src="blue_marble-removebg-preview.jpg" alt="Eishanth" class="logo-button">
+        </div>
+    </div>
+
+    <div class="container1">
+        <div class="question">
+            <h2 class="h" id="question-number">QUESTION:</h2>
+            <div class="ds">
+                <h2 class="question-number" id="question-number">1.&ensp;</h2>
+                <h2 class="question-text" id="question-text">Loading question...</h2>
+            </div>
+            <div class="side">
+                <div class="ava"></div>
+                <div class="bet">
+                    <h2 class="marbles">MARBLE&ensp;:&nbsp;</h2>
+                    <h2 class="marbles_gamble" id="marbles_gamble">2</h2>
+                    <!-- Bet amount input -->
+                    <input type="number" id="betAmount" value="1" min="1" max="8">
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="hand1" id="hand1">
+                <h2 class="ans1" id="answer1">Answer 1</h2>
+                <img src="hand_close.jpg" class="img" id="img1">
+                <button class="btn1" id="bet1">BET</button>
+                <div class="message" id="message1"></div>
+            </div>
+            <div class="timer" id="timer"></div>
+            <div class="hand1" id="hand2">
+                <h2 class="ans1" id="answer2">Answer 2</h2>
+                <img src="hand_close.jpg" alt="" class="img" id="img2">
+                <button class="btn1" id="bet2">BET</button>
+                <div class="message" id="message2"></div>
+            </div>
+        </div>
+        <button class="next">Next</button>
+    </div>
+
+    <script>
+        let questionID = 0;
+let currentQuestionIndex = 0;
+let questionAnswered = false;
+let totalMarbles = 10;
+let questionsPlayed = 0;
+const maxQuestionsPerTurn = 5;
+
+function updateMarbles() {
+    document.getElementById("total_marbles_remaining").textContent = totalMarbles;
+}
+
+function calculateCredits() {
+    const maxMarbles = 320;
+    const maxCredits = 25;
+    const marblePerCredit = 12.8;
+
+    let credits = Math.floor(totalMarbles / marblePerCredit);
+    if (credits > maxCredits) credits = maxCredits;
+
+    document.getElementById("total_credits_remaining").textContent = credits;
+}
+
+async function fetchQuestion() {
+    try {
+        const response = await fetch(`http://localhost:3000/questions/${currentQuestionIndex}`);
+        if (response.ok) {
+            const data = await response.json();
+            questionID = data.id;
+            document.getElementById("question-number").textContent = `Question ${currentQuestionIndex + 1}:`;
+            document.getElementById("question-text").textContent = data.question;
+            document.getElementById("answer1").textContent = data.answers[0];
+            document.getElementById("answer2").textContent = data.answers[1];
+            document.getElementById("bet1").onclick = () => placeBet(data.answers[0], "img1");
+            document.getElementById("bet2").onclick = () => placeBet(data.answers[1], "img2");
+            questionAnswered = false;
+            document.getElementById("bet1").disabled = false;
+            document.getElementById("bet2").disabled = false;
+        } else {
+            console.error("Failed to fetch question:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error fetching question:", error);
+    }
+}
+
+async function placeBet(answer, imgId) {
+    const betAmountInput = document.getElementById("betAmount");
+    const betAmount = parseInt(betAmountInput.value, 10);
+
+    if (isNaN(betAmount) || betAmount <= 0) {
+        alert("Please enter a valid bet amount.");
+        return;
+    }
+
+    if (betAmount > totalMarbles) {
+        alert("Bet amount exceeds total marbles.");
+        return;
+    }
+
+    const response = await fetch('http://localhost
+
+    </script>
+</body>
+</html>
