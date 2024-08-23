@@ -1,16 +1,11 @@
-/* General Styles */
-* {
+html,body {
     margin: 0;
-    padding: 0;
+    padding: 0;;
+    height: 100%;
+    width: 100%;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1a1a1d;
-    color: white;
-}
-
 .header-container {
     background: linear-gradient(to right, #141e30, #243b55);
     padding: 10px;
@@ -20,52 +15,104 @@ body {
     top: 0;
     left: 0;
     justify-content: space-between;
+    box-shadow: 0 4px 8px hsla(0, 0%, 0%, 0.2);
     width: 100%;
     z-index: 1000;
-}
-
-.header-image {
-    width: 250px;
+    /* height: 60px; */
+  }
+  
+  .header-image {
+    width:250px;
     height: auto;
     border-radius: 8px;
     margin-right: 20px;
-}
-
-.header-content h1 {
+    padding-bottom: 15px;
+  }
+  
+  .header-content h1 {
     color: #fff;
     font-size: 26px;
-}
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+  }
 
-.header-right {
+  .header-right {
     display: flex;
     align-items: center;
-}
-
-.total_marbles,
-.total_credits {
+  }
+  .total_marbles,
+  .total_credits{
     margin-right: 10px;
     margin-top: 10px;
     color: white;
     font-size: 20px;
-}
-
-.total_marbles_remaining,
-.total_credits_remaining {
+  }
+  .total_marbles_remaining,
+  .total_credits_remaining{
     margin-right: 20px;
     margin-top: 10px;
     color: white;
     font-size: 20px;
+  }
+
+  /* Game stats styling */
+  /* .game-stats {
+    margin-right: 20px; 
+    color: #fff;
+    font-size: 18px;
+  }
+   */
+  /* .game-stats .score,
+  .game-stats .time {
+    margin-left: 20px; /* Space between score and time */
+  /* } */
+ 
+  .logo-button {
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    border-radius: 50%; 
+  }
+  .header-container {
+    backdrop-filter: blur(10px); 
+  }
+
+img{
+    width:300px;
+    height: 40px;
+    margin-top: 20px;
+    margin-right: 20px;
 }
 
+/* /-----------------------Instructions---------------------------------/ */
+
+h2 {
+    font-size: 17px;
+}
+.tab {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 24px;
+    margin-top: 15px;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.tab:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
 .popup {
+  margin-top: 20px;
     position: fixed;
-    padding: 50px;
+    padding: 10px;
     max-height: 530px;
     max-width: 450px;
     overflow-y: auto; 
     background-color: #fff;
-    color: black;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.404);
     z-index: 1000;
     border-radius: 5px;
     text-align: left;
@@ -73,41 +120,383 @@ body {
     opacity: 0;
     visibility: hidden;
     width: auto;
+    box-sizing: border-box;
+    
 }
-
 .popup.show {
     opacity: 1;
     visibility: visible;
 }
-
-main {
-    display: flex;
-    height: calc(100vh - 80px); /* Adjust height for fixed header */
-    background-color: #2b2e4a;
-    padding-top: 80px; /* Adjust based on header height */
+.popup:hover {
+    padding: 10px; /* Keep the padding consistent during hover */
 }
-
-.hand1 {
-    background-color: #212529;
-    border: 2px solid #536493;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.btn1 {
-    width: 150px;
-    height: 50px;
-    background-color: #ff6f61;
+.popup .close-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
     color: #fff;
-    border: none;
-    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.popup .close-btn:hover {
+    background-color: #0056b3;
+}
+dl {
+    font-size: 15px;
+}
+dl:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+dt {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+dd {
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
-.btn1:hover {
-    background-color: #e85a4f;
+/* Media query to adjust for smaller screens */
+@media screen and (max-width: 600px) {
+  .header-content h1 {
+      font-size: 18px;
+  }
+
+  .tab {
+      padding: 5px;
+  }
+
+  .popup {
+      width: auto;
+      max-height: 200px;
+      max-width: 100px;
+  }
+
+  .total_marbles, .total_credits {
+      font-size: 14px;
+  }
 }
 
-/* Add other styles as needed */
+/* /--------------------------------------------------------/ */
+.container1{
+    /* position: fixed; */
+    z-index: 1;
+   display: flex;
+   margin: 100px auto 20px; 
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color:darkgreen;
+   padding: 20px;
+   width: 90%;
+   border-radius: 20px;
+
+   /* max-width: 1200px;
+   min-width: 320px; */
+}
+
+.question{
+    width:100%;
+    margin-bottom: 20px;
+    /* background-color:#070f2b; */
+    background-color: slateblue;
+    text-align: center;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+   width: 95%;
+   border-radius: 20px;
+} 
+
+.h{
+
+    margin-left: 30px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    height: 20px;
+    /* background-color: chocolate; */
+}
+
+
+.ds{
+    margin: 40px 0 10px 0;
+     width:60%;
+     display: flex;
+     /* background-color:darkred; */
+}
+.question-text{
+    font-size: 20px;
+    /* background-color: #fff; */
+}
+
+.side
+{
+    width:250px;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    /* align-items: center; */
+    margin-top: 15px;
+    padding: 10px 0 10px 10px;
+    background-color: #1e2938;
+    margin-left: 20px;
+    flex-wrap: wrap;
+}
+
+
+
+.ava {
+    width:40%;
+    height:20%;
+     /* background-color: #253347; */
+     display: flex;
+     flex:1;
+     /* justify-content: center; */
+     /* align-items: center; */
+     font-size: 20px;
+     word-spacing: 2px;
+     background-color: #ccc;
+     min-width: 120px;
+     
+}
+
+.bet {
+    width: 40%;
+    height: 20%;
+   /* background-color: #253347; */
+   flex: 1;
+    display: flex;
+    /* align-items: center; 
+    justify-content: center; */
+    margin-top: 10px;
+    margin-bottom: 15px;
+    word-spacing: 2px;
+    font-size: 20px;
+    /* padding: 20px; */
+    background-color: #ccc;
+    min-width: 120px;
+    /* z-index: 3; */
+} 
+
+.credits, .marbles {
+    margin: 0;
+    /* width: 100px;  */
+    text-align: left;
+    flex-shrink: 0;
+    /* background-color: #ff6347; */
+}
+
+.credits_gamble, .marbles_gamble {
+    margin: 0;
+    flex-grow: 1; /* Allows the number container to adjust in size */
+    white-space: nowrap; /* Prevents wrapping of the numbers */
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ensures long numbers are trimmed with an ellipsis if they overflow */
+}
+@media (max-width: 600px) {
+    .side {
+        flex-direction: column; /* Stack the elements vertically on small screens */
+        align-items: flex-start;
+    }
+
+    .ava, .bet {
+        width: 100%; /* Full width on small screens */
+        justify-content: space-between; /* Adjusts spacing */
+    }
+    .credits, .marbles{
+        width: 100%; /* Make labels full width on smaller screens */
+        min-width: 50px; /* Adjust as necessary */
+    }
+
+    .credits_gamble, .marbles_gamble{
+        text-align: right; /* Adjust alignment if necessary */
+    }
+    
+}
+
+/* /--------------------------------------------------------------------main part/ */
+.main {
+    width: 90%;
+    height: 60%;
+    background-color: #070f2b;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#hand1 {
+    width: 20%;
+    height: 20%;
+    color: white;
+    border: brown 2px solid;
+    align-items: center;
+    margin-top: 18px;
+    /* margin-left: 1px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding: 10px;
+    margin-bottom: 18px;
+    position: relative;
+}
+#hand2 {
+    width: 20%;
+    height: 20%;
+    color: white;
+    border: brown 2px solid;
+    align-items: center;
+    margin-top: 18px;
+    /* margin-right: 1px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 18px;
+    position: relative;
+}
+.ans1 {
+    width:150px;
+    height: 40px;
+    background-color: #070f2b;
+    margin-top: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+}
+.img {
+    width: 230px;
+    height: 230px;
+    /* height: auto; */
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+button {
+    padding: 8px 35px;
+    font-size: 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-left: 18px;
+} 
+
+/* .btn1 {
+    width: 120px;
+    height: 50px;
+    font-size: 30px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: 50px;
+} */
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: black;
+    display: none;
+}
+.timer {
+    font-size: 25px;
+    color: whitesmoke;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
+    padding-top: 180px;
+}
+.score {
+    font-size: 24px;
+    color: whitesmoke;
+    text-align: center;
+    margin-top: 20px;
+}
+.next-btn {
+    font-size: 24px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: green;
+    color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .main {
+        flex-direction: column; /* Stack the hands vertically on small screens */
+        align-items: center;
+    }
+
+    .hand1 {
+        width: 100%; /* Full width on small screens */
+        max-width: 300px; /* Limit the max-width for a better layout on small screens */
+        margin-bottom: 20px; /* Add spacing between stacked items */
+    }
+
+    .img {
+        max-width: 80%; /* Scale down the image to fit better on small screens */
+        height: auto;
+    }
+}
+
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0 20px 0;
+    text-align: center;
+}
+.footer .footer_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+.footer .social {
+    display: flex;
+    justify-content: center;
+}
+.footer .social a {
+    margin: 0 12px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+.footer .social a:hover {
+    color: #ff6347;
+}
+.footer .copyright {
+    margin-top: 5px;
+    font-size: 16px;
+}
+@media (max-width: 768px) {
+    .footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer .nav {
+        margin-top: 20px;
+    }
+    .footer .nav li {
+        margin: 5px 0;
+    }
+}
