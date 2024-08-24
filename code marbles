@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Marbles</title>
     <link rel="stylesheet" href="code_marbles.css">
-    <script src="demo.js"></script>
 </head>
 <script>
         function btn() {
