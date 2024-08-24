@@ -8,48 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="syntax.css">
     <title>Syntax Stoplight</title>
-    <style>
-        .instruction-button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-        }
-
-        .instruction-popup {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            transform: translateY(5px);
-            background: linear-gradient(to right, #979291, #9e7e7e);
-            color: #fff;
-            padding: 16px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            display: none;
-            z-index: 1000;
-            width: 300px;
-        }
-
-        .instruction-button:hover .instruction-popup {
-            display: block;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-        }
-
-        .total_credits, .total_credits_remaining {
-            margin-left: 20px;
-            font-size: 18px;
-            color: white;
-        }
-    </style>
 </head>
 <script>
     function btn() {
@@ -60,6 +18,27 @@
             document.getElementById("popupBox1").style.display = "none";
         }, 500); // Waits for the transition to complete before setting display to none
     }
+    function showPopup(event) {
+        const popup = document.getElementById('popupBox');
+        const tab = event.currentTarget;
+        const tabRect = tab.getBoundingClientRect();
+
+        popup.style.top = `${tabRect.bottom + window.scrollY}px`;
+        popup.style.left = `${tabRect.left + window.scrollX}px`;
+        popup.classList.add('show');
+    }
+    function keepPopup(event) {
+        const popup = document.getElementById('popupBox');
+        popup.classList.add('show');
+    }
+    function hidePopup(event) {
+        const relatedTarget = event.relatedTarget || event.toElement;
+        if (!relatedTarget || !popupBox.contains(relatedTarget)) {
+            const popup = document.getElementById('popupBox');
+            popup.classList.remove('show');
+        }
+        
+    }
 </script>
 <body>
     <div class="header-container">
@@ -68,8 +47,8 @@
             <h1>Syntax Stoplight</h1>
         </div>
         <div class="header-right">
-            <div class="instruction-button">Instruction
-                <div class="instruction-popup" id="popupBox">
+                    <div class="tab" onmouseover="showPopup(event)" onmouseout="hidePopup(event)">Instruction</div>
+                    <div class="popup" id="popupBox" onmouseover="keepPopup(event)" onmouseout="hidePopup(event)">
                     <h2>How to Play</h2>
                     <dl>
                         <dt>Start the Game:</dt>
@@ -86,10 +65,9 @@
                         <dd>Once you have corrected the errors and the light is green, you can submit your corrected code for review.</dd>
                     </dl>
                 </div>
-            </div>
             <div class="total_credits" id="total_credits">Total Credits :</div>
             <div class="total_credits_remaining" id="total_credits_remaining">0</div>
-            <img src="codeverse.jpg" alt="Eishanth" class="logo-button">
+            <div class="logo-button"><i class="fa-regular fa-user"></i></div>
         </div>
     </div>
     
@@ -114,7 +92,7 @@
         </dl>
     </div>
 
-    <main id="main">
+    <div id="main">
         <div class="alert alert-danger" style="max-width: 400px; margin: auto;">
             <strong>Attempt!</strong> You have failed to fix all the errors.
             <button type="button" class="btn btn-danger">two attempts left</button>
@@ -145,12 +123,27 @@
                 <img src="OIP (1).jpeg" alt="Red" id="redImage">
             </div>
         </div>
-    </main>
+    </div>
 
     <!-- JavaScript files -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.min.js"></script>
     <script src="syntax.js"></script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 MyWebsite. All rights reserved. <br>
+            <p>This website was made with &ensp;<i class="fa-regular fa-heart"></i>&ensp; by Virtual Voyagers</p>
+        </div>
+    </footer>
 </body>
 </html>
